@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df555b93da47b7945a26b9528b5d5f57, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
-  <Sprite>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   <NameToDisplay>k__BackingField: Forest
+  <MoneyCost>k__BackingField: 0
+  <WoodCost>k__BackingField: 0
