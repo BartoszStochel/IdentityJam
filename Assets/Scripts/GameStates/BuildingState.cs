@@ -5,7 +5,7 @@ public class BuildingState : GameState
 {
 	[SerializeField] private Building buildingPrefab;
 
-	private BuildingData currentlySelectedBuildingData;
+	private BuildingToBuildButton currentlySelectedBuildingButton;
 	private Field[,] fields;
 
 	public void Initialize(Field[,] newFields)
@@ -13,9 +13,9 @@ public class BuildingState : GameState
 		fields = newFields;
 	}
 
-	public void SetCurrentlySelectedBuildingData(BuildingData newBuildingData)
+	public void SetCurrentlySelectedBuildingButton(BuildingToBuildButton button)
 	{
-		currentlySelectedBuildingData = newBuildingData;
+		currentlySelectedBuildingButton = button;
 	}
 
 	public override void OnStateEntered()
@@ -24,6 +24,8 @@ public class BuildingState : GameState
 		{
 			field.TryActivateCanBuildIndicator();
 		}
+
+		currentlySelectedBuildingButton.SetCurrentlySelectedIndicatorActivity(true);
 	}
 
 	public override void OnStateExited()
@@ -32,12 +34,14 @@ public class BuildingState : GameState
 		{
 			field.DeactivateCanBuildIndicator();
 		}
+
+		currentlySelectedBuildingButton.SetCurrentlySelectedIndicatorActivity(false);
 	}
 
 	public override void OnFieldClicked(Field field)
 	{
 		var building = Instantiate(buildingPrefab, field.transform);
-		building.Initialize(currentlySelectedBuildingData);
+		building.Initialize(currentlySelectedBuildingButton.buildingData);
 		field.SetBuilding(building);
 
 		RequestExitFromThisState?.Invoke(this);

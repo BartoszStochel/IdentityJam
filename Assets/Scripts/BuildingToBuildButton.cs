@@ -9,10 +9,11 @@ public class BuildingToBuildButton : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI buildingName;
 	[SerializeField] private TextMeshProUGUI moneyCost;
 	[SerializeField] private TextMeshProUGUI woodCost;
+	[SerializeField] private GameObject currentlySelectedIndicator;
 
-	private BuildingData buildingData;
+	public BuildingData buildingData { get; private set; }
 
-	public Action<BuildingData> ButtonClicked;
+	public Action<BuildingToBuildButton> ButtonClicked;
 
 	public void Initialize(BuildingData data)
 	{
@@ -29,8 +30,13 @@ public class BuildingToBuildButton : MonoBehaviour
 		GetComponentInChildren<Button>().onClick.AddListener(OnButtonClicked);
 	}
 
+	public void SetCurrentlySelectedIndicatorActivity(bool shouldBeActive)
+	{
+		currentlySelectedIndicator.SetActive(shouldBeActive);
+	}
+
 	private void OnButtonClicked()
 	{
-		ButtonClicked?.Invoke(buildingData);
+		ButtonClicked?.Invoke(this);
 	}
 }
