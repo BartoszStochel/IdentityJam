@@ -16,3 +16,4 @@ MonoBehaviour:
   <NameToDisplay>k__BackingField: Geologist hut
   <MoneyCost>k__BackingField: 150
   <WoodCost>k__BackingField: 0
+  <CanBeBuiltByPlayer>k__BackingField: 1

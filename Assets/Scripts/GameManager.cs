@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Transform buildingsToBuildContainer;
 	[SerializeField] private BuildingToBuildButton buildingToBuildPrefab;
-	[SerializeField] private List<BuildingData> buildingDatas;
+	[SerializeField] private List<BuildingData> allBuildingDatas;
+	[SerializeField] private List<BuildingData> buildingDatasToBuildByPlayer;
 
 	[SerializeField] private TextMeshProUGUI cashLabel;
 	[SerializeField] private TextMeshProUGUI crudeLabel;
@@ -42,8 +43,20 @@ public class GameManager : MonoBehaviour
 		UpdateResourcesLabels();
 		UpdateBuildingButtonsAvailability();
 		InitializeStates();
+		PlaceRandomForestsOnMap();
 
 		backgroundButton.onClick.AddListener(OnBackgroundButtonClicked);
+	}
+
+	private void PlaceRandomForestsOnMap()
+	{
+		foreach (var field in fields)
+		{
+			if (Random.Range(0, 2) == 0)
+			{
+				buildingState.PlaceBuildingOnField(allBuildingDatas.Find(data => data.name == "Forest"), field);
+			}
+		}
 	}
 
 	private void InitializeResourcesManager()
@@ -117,7 +130,7 @@ public class GameManager : MonoBehaviour
 	{
 		buildingButtons = new List<BuildingToBuildButton>();
 
-		foreach (var data in buildingDatas)
+		foreach (var data in buildingDatasToBuildByPlayer)
 		{
 			var buildingButton = Instantiate(buildingToBuildPrefab, buildingsToBuildContainer);
 			buildingButton.Initialize(data);

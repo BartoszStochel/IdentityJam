@@ -7,13 +7,15 @@ public class Field : MonoBehaviour
 	[SerializeField] private GameObject canBuildIndicator;
 
 	private Building buildingOnField;
+	private Button button;
 
 	public Action<Field> ButtonClicked;
 
 	private void Start()
 	{
-
-		GetComponentInChildren<Button>().onClick.AddListener(OnButtonClicked);
+		button = GetComponentInChildren<Button>();
+		button.onClick.AddListener(OnButtonClicked);
+		button.enabled = false;
 	}
 
 	public void SetBuilding(Building newBuilding)
@@ -28,11 +30,15 @@ public class Field : MonoBehaviour
 
 	public void TryActivateCanBuildIndicator()
 	{
-		canBuildIndicator.SetActive(buildingOnField == null);
+		var isFieldFree = buildingOnField == null;
+
+		canBuildIndicator.SetActive(isFieldFree);
+		button.enabled = isFieldFree;
 	}
 
 	public void DeactivateCanBuildIndicator()
 	{
 		canBuildIndicator.SetActive(false);
+		button.enabled = false;
 	}
 }
