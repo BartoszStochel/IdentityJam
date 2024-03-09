@@ -651,6 +651,7 @@ MonoBehaviour:
   buildingDatas:
   - {fileID: 11400000, guid: 10c8309bd346de34699aa666d4cc3228, type: 2}
   - {fileID: 11400000, guid: a8d3e0800c353cf4dbf4453d4d06ad4e, type: 2}
+  - {fileID: 11400000, guid: 01ca12ee8896e1d4fa133c0c162742d1, type: 2}
   cashLabel: {fileID: 422320968}
   crudeLabel: {fileID: 1053998333}
   woodLabel: {fileID: 1949244983}
@@ -908,8 +909,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 30}
-  m_SizeDelta: {x: 0, y: 239.91}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1428905055
 MonoBehaviour:
@@ -941,7 +942,7 @@ MonoBehaviour:
     m_Left: 50
     m_Right: 50
     m_Top: 0
-    m_Bottom: 0
+    m_Bottom: 85
   m_ChildAlignment: 4
   m_Spacing: 50
   m_ChildForceExpandWidth: 1
