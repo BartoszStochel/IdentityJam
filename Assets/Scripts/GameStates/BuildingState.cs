@@ -51,10 +51,15 @@ public class BuildingState : GameState
 		resourcesManager.ModifyMoney(-currentlySelectedBuildingButton.buildingData.MoneyCost);
 		resourcesManager.ModifyWood(-currentlySelectedBuildingButton.buildingData.WoodCost);
 
-		var building = Instantiate(buildingPrefab, field.transform);
-		building.Initialize(currentlySelectedBuildingButton.buildingData);
-		field.SetBuilding(building);
+		PlaceBuildingOnField(currentlySelectedBuildingButton.buildingData, field);
 
 		RequestExitFromThisState?.Invoke(this);
+	}
+
+	public void PlaceBuildingOnField(BuildingData buildingData, Field field)
+	{
+		var building = Instantiate(buildingPrefab, field.transform);
+		building.Initialize(buildingData);
+		field.SetBuilding(building);
 	}
 }

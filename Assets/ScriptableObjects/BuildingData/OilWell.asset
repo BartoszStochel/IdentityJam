@@ -16,3 +16,4 @@ MonoBehaviour:
   <NameToDisplay>k__BackingField: Oil well
   <MoneyCost>k__BackingField: 200
   <WoodCost>k__BackingField: 10
+  <CanBeBuiltByPlayer>k__BackingField: 1

@@ -648,10 +648,16 @@ MonoBehaviour:
   spacingY: 200
   buildingsToBuildContainer: {fileID: 1428905054}
   buildingToBuildPrefab: {fileID: 8324947332420988509, guid: 0a78ffca965015544abfd8c0145dfa3c, type: 3}
-  buildingDatas:
-  - {fileID: 11400000, guid: 10c8309bd346de34699aa666d4cc3228, type: 2}
+  allBuildingDatas:
+  - {fileID: 11400000, guid: ea22682cc4953f445984329d3bf0723a, type: 2}
   - {fileID: 11400000, guid: a8d3e0800c353cf4dbf4453d4d06ad4e, type: 2}
   - {fileID: 11400000, guid: 01ca12ee8896e1d4fa133c0c162742d1, type: 2}
+  - {fileID: 11400000, guid: 10c8309bd346de34699aa666d4cc3228, type: 2}
+  - {fileID: 11400000, guid: 25a2f740b58903b48bb588c7bc7a4f19, type: 2}
+  buildingDatasToBuildByPlayer:
+  - {fileID: 11400000, guid: a8d3e0800c353cf4dbf4453d4d06ad4e, type: 2}
+  - {fileID: 11400000, guid: 01ca12ee8896e1d4fa133c0c162742d1, type: 2}
+  - {fileID: 11400000, guid: 10c8309bd346de34699aa666d4cc3228, type: 2}
   cashLabel: {fileID: 422320968}
   crudeLabel: {fileID: 1053998333}
   woodLabel: {fileID: 1949244983}
