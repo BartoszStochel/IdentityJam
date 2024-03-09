@@ -10,6 +10,9 @@ public class BuildingToBuildButton : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI moneyCost;
 	[SerializeField] private TextMeshProUGUI woodCost;
 	[SerializeField] private GameObject currentlySelectedIndicator;
+	[SerializeField] private GameObject notEnoughResourcesIndicator;
+
+	private Button button;
 
 	public BuildingData buildingData { get; private set; }
 
@@ -27,12 +30,19 @@ public class BuildingToBuildButton : MonoBehaviour
 		moneyCost.gameObject.SetActive(buildingData.MoneyCost > 0);
 		woodCost.gameObject.SetActive(buildingData.WoodCost > 0);
 
-		GetComponentInChildren<Button>().onClick.AddListener(OnButtonClicked);
+		button = GetComponentInChildren<Button>();
+		button.onClick.AddListener(OnButtonClicked);
 	}
 
 	public void SetCurrentlySelectedIndicatorActivity(bool shouldBeActive)
 	{
 		currentlySelectedIndicator.SetActive(shouldBeActive);
+	}
+
+	public void SetNotEnoughResourcesIndicatorActivity(bool shouldBeActive)
+	{
+		notEnoughResourcesIndicator.SetActive(shouldBeActive);
+		button.enabled = !shouldBeActive;
 	}
 
 	private void OnButtonClicked()
