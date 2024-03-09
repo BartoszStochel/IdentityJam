@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Sprite>k__BackingField: {fileID: 0}
   <NameToDisplay>k__BackingField: Geologist hut
+  <MoneyCost>k__BackingField: 150
+  <WoodCost>k__BackingField: 0
