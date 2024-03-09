@@ -101,9 +101,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void OnBuildingButtonClicked(BuildingData data)
+	private void OnBuildingButtonClicked(BuildingToBuildButton button)
 	{
-		buildingState.SetCurrentlySelectedBuildingData(data);
+		buildingState.SetCurrentlySelectedBuildingButton(button);
 		ChangeState(buildingState);
 	}
 
