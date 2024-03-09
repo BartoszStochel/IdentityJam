@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = nameof(BuildingState), menuName = "GameStates/" + nameof(BuildingState))]
 public class BuildingState : GameState
@@ -59,7 +60,7 @@ public class BuildingState : GameState
 	public void PlaceBuildingOnField(BuildingData buildingData, Field field)
 	{
 		var building = Instantiate(buildingPrefab, field.transform);
-		building.Initialize(buildingData);
+		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields));
 		field.SetBuilding(building);
 	}
 }

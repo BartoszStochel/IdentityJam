@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 				var field = Instantiate(fieldPrefab, fieldsContainer);
 				var rectTransform = field.GetComponent<RectTransform>();
 				rectTransform.anchoredPosition = new Vector2(x * spacingX - (mapSizeX - 1) * spacingX / 2f, y * spacingY - (mapSizeY - 1) * spacingY / 2f);
-				field.name = $"Field {x}, {y}";
+				field.Initialize(x, y);
 				field.ButtonClicked += OnFieldClicked;
 
 				fields[x, y] = field;

@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df555b93da47b7945a26b9528b5d5f57, type: 3}
-  m_Name: Lumberjack
+  m_Script: {fileID: 11500000, guid: fe5453d5e8ef1014ea91999d18f49d46, type: 3}
+  m_Name: LumberjackData
   m_EditorClassIdentifier: 
-  <Sprite>k__BackingField: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  <Sprite>k__BackingField: {fileID: 0}
   <NameToDisplay>k__BackingField: Lumberjack
-  <MoneyCost>k__BackingField: 100
+  <MoneyCost>k__BackingField: 150
   <WoodCost>k__BackingField: 0
-  <CanBeBuiltByPlayer>k__BackingField: 1
+  <ExtendedRangeInBothWays>k__BackingField: 2
+  <ActionTimeInterval>k__BackingField: 3
+  <TakenResources>k__BackingField: 10
