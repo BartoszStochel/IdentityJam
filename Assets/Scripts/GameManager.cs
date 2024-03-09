@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI crudeLabel;
 	[SerializeField] private TextMeshProUGUI woodLabel;
 
-	[SerializeField] private int startingCash;
+	[SerializeField] private int startingMoney;
 
 	[SerializeField] private DefaultState defaultState;
 	[SerializeField] private BuildingState buildingState;
@@ -29,31 +29,54 @@ public class GameManager : MonoBehaviour
 
 	private GameState currentState;
 
-	private int currentCash;
-	private int currentCrude;
-	private int currentWood;
-
 	private Field[,] fields;
+	private List<BuildingToBuildButton> buildingButtons;
+
+	private ResourcesManager resourcesManager;
 
 	private void Start()
 	{
 		GenerateFields();
-		GenerateBuildingsToBuild();
-
-		currentCash = startingCash;
-
+		GenerateBuildingsToBuildButtons();
+		InitializeResourcesManager();
 		UpdateResourcesLabels();
-		InitializeStated();
+		UpdateBuildingButtonsAvailability();
+		InitializeStates();
 
 		backgroundButton.onClick.AddListener(OnBackgroundButtonClicked);
 	}
 
-	private void InitializeStated()
+	private void InitializeResourcesManager()
+	{
+		resourcesManager = new ResourcesManager();
+		resourcesManager.ModifyMoney(startingMoney);
+		resourcesManager.ResourcesChanged += OnResourcesChanged;
+	}
+
+	private void OnResourcesChanged()
+	{
+		UpdateResourcesLabels();
+		UpdateBuildingButtonsAvailability();
+	}
+
+	private void UpdateBuildingButtonsAvailability()
+	{
+		foreach (var buildingToBuildButton in buildingButtons)
+		{
+			var hasEnoughResourcesForBuilding =
+				resourcesManager.CurrentMoney >= buildingToBuildButton.buildingData.MoneyCost &&
+				resourcesManager.CurrentWood >= buildingToBuildButton.buildingData.WoodCost;
+
+			buildingToBuildButton.SetNotEnoughResourcesIndicatorActivity(!hasEnoughResourcesForBuilding);
+		}
+	}
+
+	private void InitializeStates()
 	{
 		currentState = defaultState;
 		defaultState.RequestExitFromThisState += OnRequestExitFromThisState;
 		buildingState.RequestExitFromThisState += OnRequestExitFromThisState;
-		buildingState.Initialize(fields);
+		buildingState.Initialize(fields, resourcesManager);
 	}
 
 	private void OnRequestExitFromThisState(GameState state)
@@ -90,14 +113,18 @@ public class GameManager : MonoBehaviour
 		currentState.OnFieldClicked(field);
 	}
 
-	private void GenerateBuildingsToBuild()
+	private void GenerateBuildingsToBuildButtons()
 	{
+		buildingButtons = new List<BuildingToBuildButton>();
+
 		foreach (var data in buildingDatas)
 		{
 			var buildingButton = Instantiate(buildingToBuildPrefab, buildingsToBuildContainer);
 			buildingButton.Initialize(data);
 			buildingButton.name = data.name + "Button";
 			buildingButton.ButtonClicked += OnBuildingButtonClicked;
+
+			buildingButtons.Add(buildingButton);
 		}
 	}
 
@@ -116,9 +143,9 @@ public class GameManager : MonoBehaviour
 
 	private void UpdateResourcesLabels()
 	{
-		cashLabel.text = currentCash.ToString();
-		crudeLabel.text = currentCrude.ToString();
-		woodLabel.text = currentWood.ToString();
+		cashLabel.text = resourcesManager.CurrentMoney.ToString();
+		crudeLabel.text = resourcesManager.CurrentCrude.ToString();
+		woodLabel.text = resourcesManager.CurrentWood.ToString();
 	}
 
 	private void OnGUI()

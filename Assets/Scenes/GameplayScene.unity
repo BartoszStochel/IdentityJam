@@ -655,7 +655,7 @@ MonoBehaviour:
   cashLabel: {fileID: 422320968}
   crudeLabel: {fileID: 1053998333}
   woodLabel: {fileID: 1949244983}
-  startingCash: 750
+  startingMoney: 700
   defaultState: {fileID: 11400000, guid: f541bf7f29a282647b9c11c57c67c18d, type: 2}
   buildingState: {fileID: 11400000, guid: 85fd8ffb95f3e48409665524f1e31505, type: 2}
   backgroundButton: {fileID: 1666325735}
