@@ -5,21 +5,22 @@ public class Building : MonoBehaviour
 {
 	[SerializeField] private Image Image;
 
+	public BuildingBehaviour Behaviour { get; private set; }
+
 	private BuildingData data;
-	private BuildingBehaviour behaviour;
 
 	private void Update()
 	{
-		if (behaviour != null)
+		if (Behaviour != null)
 		{
-			behaviour.OnUpdateBehaviour();
+			Behaviour.OnUpdateBehaviour();
 		}
 	}
 
 	public void Initialize(BuildingData newData, BuildingBehaviour newBehaviour)
 	{
 		data = newData;
-		behaviour = newBehaviour;
+		Behaviour = newBehaviour;
 
 		Image.sprite = data.Sprite;
 	}

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 public abstract class RangedBuildingBehaviour : BuildingBehaviour
 {
+	new protected ActionBuildingData buildingData;
 	protected List<Field> fieldsInRange;
 
 	public RangedBuildingBehaviour(BuildingData newBuildingData, List<Field> newFieldsInRange) : base(newBuildingData)

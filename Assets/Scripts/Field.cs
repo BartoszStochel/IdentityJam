@@ -8,8 +8,8 @@ public class Field : MonoBehaviour
 
 	public int XPosition { get; private set; }
 	public int YPosition { get; private set; }
+	public Building BuildingOnField { get; private set; }
 
-	private Building buildingOnField;
 	private Button button;
 
 	public Action<Field> ButtonClicked;
@@ -28,7 +28,7 @@ public class Field : MonoBehaviour
 
 	public void SetBuilding(Building newBuilding)
 	{
-		buildingOnField = newBuilding;
+		BuildingOnField = newBuilding;
 	}
 
 	private void OnButtonClicked()
@@ -38,7 +38,7 @@ public class Field : MonoBehaviour
 
 	public void TryActivateCanBuildIndicator()
 	{
-		var isFieldFree = buildingOnField == null;
+		var isFieldFree = BuildingOnField == null;
 
 		canBuildIndicator.SetActive(isFieldFree);
 		button.enabled = isFieldFree;
