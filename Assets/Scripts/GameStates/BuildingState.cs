@@ -60,7 +60,7 @@ public class BuildingState : GameState
 	public void PlaceBuildingOnField(BuildingData buildingData, Field field)
 	{
 		var building = Instantiate(buildingPrefab, field.transform);
-		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields));
+		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields, resourcesManager));
 		field.SetBuilding(building);
 	}
 }

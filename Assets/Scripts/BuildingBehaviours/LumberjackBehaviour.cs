@@ -3,9 +3,15 @@ using UnityEngine;
 
 public class LumberjackBehaviour : RangedBuildingBehaviour
 {
-	public LumberjackBehaviour(BuildingData newBuildingData, List<Field> newFieldsInRange) : base(newBuildingData, newFieldsInRange)
+	public LumberjackBehaviour(BuildingData newBuildingData, List<Field> newFieldsInRange, ResourcesManager newResourcesManager) : base(newBuildingData, newFieldsInRange)
 	{
+		buildingData = newBuildingData as LumberjackData;
+		resourcesManager = newResourcesManager;
+
+		timer = buildingData.ActionTimeInterval;
 	}
+
+	private ResourcesManager resourcesManager;
 
 	private float timer;
 
@@ -27,7 +33,9 @@ public class LumberjackBehaviour : RangedBuildingBehaviour
 
 			var takenResources = forest.DepleteResources(buildingData.TakenResources);
 
-			// TODO - dodawanko do resources
+			resourcesManager.ModifyWood(takenResources);
+			timer = buildingData.ActionTimeInterval;
+			return;
 		}
 	}
 }

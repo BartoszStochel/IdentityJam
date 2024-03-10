@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Building : MonoBehaviour
 {
 	[SerializeField] private Image Image;
 
 	public BuildingBehaviour Behaviour { get; private set; }
+
+	public event Action BuildingDestroyed;
 
 	private BuildingData data;
 
@@ -21,7 +24,13 @@ public class Building : MonoBehaviour
 	{
 		data = newData;
 		Behaviour = newBehaviour;
+		Behaviour.BehaviourRequestsDeath += OnBehaviourDeath;
 
 		Image.sprite = data.Sprite;
+	}
+
+	private void OnBehaviourDeath()
+	{
+		BuildingDestroyed?.Invoke();
 	}
 }

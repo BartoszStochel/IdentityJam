@@ -29,6 +29,16 @@ public class Field : MonoBehaviour
 	public void SetBuilding(Building newBuilding)
 	{
 		BuildingOnField = newBuilding;
+		BuildingOnField.BuildingDestroyed += OnBuildingDeath;
+	}
+
+	private void OnBuildingDeath()
+	{
+		BuildingOnField.BuildingDestroyed -= OnBuildingDeath;
+
+		Destroy(BuildingOnField.gameObject);
+
+		BuildingOnField = null;
 	}
 
 	private void OnButtonClicked()

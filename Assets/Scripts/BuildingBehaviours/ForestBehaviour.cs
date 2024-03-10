@@ -6,24 +6,32 @@ public class ForestBehaviour : BuildingBehaviour
 {
 	public int CurrentResources { get; private set; }
 
-	public ForestBehaviour(BuildingData newBuildingData) : base(newBuildingData)
+	public ForestBehaviour(ForestData newBuildingData) : base(newBuildingData)
 	{
+		CurrentResources = newBuildingData.StartingWood;
 	}
 
 	public int DepleteResources(int howMuchToDeplete)
 	{
-		// TODO - uzupe³nianie vurrentresources na starcie
-		// TODO - niszczenie budynku i  odpinanie refek na budynek
-		// TODO - stworzenie ForestData
+		// todo - podœwietlanie zasiêgu przy budowaniu i póŸniej po najechaniu na budynek
 
 		if (howMuchToDeplete > CurrentResources)
 		{
 			var howMuchWasReallyDepleted = CurrentResources;
 			CurrentResources = 0;
+
+			TriggerBehaviourDeath();
+
 			return howMuchWasReallyDepleted;
 		}
 
 		CurrentResources -= howMuchToDeplete;
+
+		if (CurrentResources <= 0)
+		{
+			TriggerBehaviourDeath();
+		}
+
 		return howMuchToDeplete;
 	}
 }
