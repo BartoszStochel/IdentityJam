@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-public class LumberjackBehaviour : RangedBuildingBehaviour
+public class LumberjackBehaviour : ActionBuildingBehaviour
 {
 	public LumberjackBehaviour(BuildingData newBuildingData, List<Field> newFieldsInRange, ResourcesManager newResourcesManager) : base(newBuildingData, newFieldsInRange)
 	{
@@ -13,29 +12,16 @@ public class LumberjackBehaviour : RangedBuildingBehaviour
 
 	private ResourcesManager resourcesManager;
 
-	private float timer;
-
-	public override void OnUpdateBehaviour()
+	protected override bool TryProcessField(Field field)
 	{
-		timer -= Time.deltaTime;
-
-		if (timer > 0f)
+		if (field.BuildingOnField == null || field.BuildingOnField.Behaviour is not ForestBehaviour forest)
 		{
-			return;
+			return false;
 		}
 
-		foreach (var field in fieldsInRange)
-		{
-			if (field.BuildingOnField == null || field.BuildingOnField.Behaviour is not ForestBehaviour forest)
-			{
-				continue;
-			}
+		var takenResources = forest.DepleteResources(BuildingData.TakenResources);
 
-			var takenResources = forest.DepleteResources(BuildingData.TakenResources);
-
-			resourcesManager.ModifyWood(takenResources);
-			timer = BuildingData.ActionTimeInterval;
-			return;
-		}
+		resourcesManager.ModifyWood(takenResources);
+		return true;
 	}
 }

@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Button backgroundButton;
 
+	[SerializeField] private int oilSlotsInOneField;
+	[SerializeField] private int totalOilCapacityInOneField;
+	[SerializeField] private int maxOilInOneSlot;
+
 	private GameState currentState;
 
 	private Field[,] fields;
@@ -118,7 +122,7 @@ public class GameManager : MonoBehaviour
 				var field = Instantiate(fieldPrefab, fieldsContainer);
 				var rectTransform = field.GetComponent<RectTransform>();
 				rectTransform.anchoredPosition = new Vector2(x * spacingX - (mapSizeX - 1) * spacingX / 2f, y * spacingY - (mapSizeY - 1) * spacingY / 2f);
-				field.Initialize(x, y);
+				field.Initialize(x, y, GetOilForField());
 				field.ButtonClicked += OnFieldClicked;
 				field.HoverStart += OnFieldHoverStart;
 				field.HoverEnd += OnFieldHoverEnd;
@@ -126,6 +130,44 @@ public class GameManager : MonoBehaviour
 				fields[x, y] = field;
 			}
 		}
+	}
+
+	private List<int> GetOilForField()
+	{
+		var oil = new List<int>();
+		var indicesToConsider = new List<int>();
+
+		for (int i = 0; i < oilSlotsInOneField; i++)
+		{
+			indicesToConsider.Add(i);
+			oil.Add(0);
+		}
+
+		for (int i = 0; i < totalOilCapacityInOneField; i++)
+		{
+			int indexToConsider;
+			bool indexIsSettled;
+
+			do
+			{
+				indexToConsider = indicesToConsider[Random.Range(0, indicesToConsider.Count)];
+
+				if (oil[indexToConsider] >= maxOilInOneSlot)
+				{
+					indicesToConsider.Remove(indexToConsider);
+					indexIsSettled = false;
+				}
+				else
+				{
+					indexIsSettled = true;
+				}
+			}
+			while (!indexIsSettled);
+
+			oil[indexToConsider]++;
+		}
+
+		return oil;
 	}
 
 	private void OnFieldClicked(Field field)

@@ -26,7 +26,7 @@ public class DefaultState : GameState
 	public override void OnFieldHoverStart(Field field)
 	{
 
-		if (field.BuildingOnField == null || field.BuildingOnField.Behaviour is not RangedBuildingBehaviour rangedBehaviour)
+		if (field.BuildingOnField == null || field.BuildingOnField.Behaviour is not ActionBuildingBehaviour rangedBehaviour)
 		{
 			return;
 		}
