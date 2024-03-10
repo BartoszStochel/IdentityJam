@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ab9ecd6a2bf6b499bdb6c48b4868a3, type: 3}
   m_Name: OilWellData
   m_EditorClassIdentifier: 
-  <Sprite>k__BackingField: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  <Sprite>k__BackingField: {fileID: 6304826840174917774, guid: d48497af3b7071f4c9b9f91a1c836a59, type: 3}
   <NameToDisplay>k__BackingField: Oil well
   <MoneyCost>k__BackingField: 100
   <CrudeCost>k__BackingField: 0

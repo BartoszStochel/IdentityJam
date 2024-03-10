@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 
 public class Building : MonoBehaviour
 {
-	[SerializeField] private Image Image;
+	[SerializeField] private SpriteRenderer Sprite;
 
 	public BuildingBehaviour Behaviour { get; private set; }
 
@@ -20,13 +19,14 @@ public class Building : MonoBehaviour
 		}
 	}
 
-	public void Initialize(BuildingData newData, BuildingBehaviour newBehaviour)
+	public void Initialize(BuildingData newData, BuildingBehaviour newBehaviour, int sortingOrder)
 	{
 		data = newData;
 		Behaviour = newBehaviour;
 		Behaviour.BehaviourRequestsDeath += OnBehaviourDeath;
 
-		Image.sprite = data.Sprite;
+		Sprite.sprite = data.Sprite;
+		Sprite.sortingOrder = sortingOrder;
 	}
 
 	private void OnBehaviourDeath()

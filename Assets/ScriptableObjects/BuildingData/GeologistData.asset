@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ded3a2ea356ca408757c76ec0247a7, type: 3}
   m_Name: GeologistData
   m_EditorClassIdentifier: 
-  <Sprite>k__BackingField: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  <Sprite>k__BackingField: {fileID: 3026877665143472482, guid: 06df1ea80d48a114ab04a6d59745cc71, type: 3}
   <NameToDisplay>k__BackingField: Geologist
   <MoneyCost>k__BackingField: 200
   <CrudeCost>k__BackingField: 10

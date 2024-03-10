@@ -63,7 +63,8 @@ public class BuildingState : GameState
 	public void PlaceBuildingOnField(BuildingData buildingData, Field field)
 	{
 		var building = Instantiate(buildingPrefab, field.transform);
-		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields, resourcesManager));
+		var sortingOrderForBuilding = field.GetComponent<Canvas>().sortingOrder - 1;
+		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields, resourcesManager), sortingOrderForBuilding);
 		field.SetBuilding(building);
 	}
 

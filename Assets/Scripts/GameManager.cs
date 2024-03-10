@@ -208,6 +208,7 @@ public class GameManager : MonoBehaviour
 				field.ButtonClicked += OnFieldClicked;
 				field.HoverStart += OnFieldHoverStart;
 				field.HoverEnd += OnFieldHoverEnd;
+				field.GetComponent<Canvas>().sortingOrder = mapSizeY * 10 - y * 5;
 
 				fields[x, y] = field;
 			}
@@ -306,6 +307,6 @@ public class GameManager : MonoBehaviour
 
 	private void OnGUI()
 	{
-		GUILayout.Label($"Current state: {currentState.name}");
+		//GUILayout.Label($"Current state: {currentState.name}");
 	}
 }
