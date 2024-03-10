@@ -35,6 +35,14 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private int numberOfForestsOnMap;
 
+	[SerializeField] private int startingYear;
+	[SerializeField] private int yearLengthInSeconds;
+	[SerializeField] private TextMeshProUGUI yearTimerLabel;
+	[SerializeField] private int moneyValueOfOneCrude;
+
+	private int currentYear;
+	private float timerToNextYear;
+
 	private GameState currentState;
 
 	private Field[,] fields;
@@ -54,7 +62,30 @@ public class GameManager : MonoBehaviour
 		InitializeStates();
 		PlaceRandomForestsOnMap();
 
+		currentYear = startingYear;
+		timerToNextYear = yearLengthInSeconds;
+
 		backgroundButton.onClick.AddListener(OnBackgroundButtonClicked);
+	}
+
+	private void Update()
+	{
+		HandleYearsAndCrudeSelling();
+	}
+
+	private void HandleYearsAndCrudeSelling()
+	{
+		timerToNextYear -= Time.deltaTime;
+
+		if (timerToNextYear <= 0f)
+		{
+			currentYear++;
+			timerToNextYear = yearLengthInSeconds;
+			resourcesManager.ModifyMoney(resourcesManager.CurrentCrude * moneyValueOfOneCrude);
+			resourcesManager.ModifyCrude(-resourcesManager.CurrentCrude);
+		}
+
+		yearTimerLabel.text = $"Year {currentYear}. Time to next year: {Mathf.CeilToInt(timerToNextYear)}";
 	}
 
 	private void PlaceRandomForestsOnMap()
