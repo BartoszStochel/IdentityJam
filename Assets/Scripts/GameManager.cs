@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private int moneyValueOfOneCrude;
 	[SerializeField] private List<GameObject> calendarCheckmarks;
 
+	[SerializeField] private GameObject fakeFieldPrefab;
+	[SerializeField] private int numberOfFakeFieldsToGenerate;
+	[SerializeField] private RectTransform fieldsBackground;
+
 	private int currentYear;
 	private float timerToNextYear;
 
@@ -223,6 +227,27 @@ public class GameManager : MonoBehaviour
 				fields[x, y] = field;
 			}
 		}
+
+		for (int i = 0; i < numberOfFakeFieldsToGenerate; i++)
+		{
+			for (int y = 0; y < mapSizeY; y++)
+			{
+				var field = Instantiate(fakeFieldPrefab, fieldsContainer);
+				var rectTransform = field.GetComponent<RectTransform>();
+				rectTransform.anchoredPosition = new Vector2(xPosition + (- i - 1) * spacingX - (mapSizeX - 1) * spacingX / 2f, yPosition + y * spacingY - (mapSizeY - 1) * spacingY / 2f);
+				field.GetComponent<Canvas>().sortingOrder = mapSizeY * 10 - y * 5;
+			}
+
+			for (int y = 0; y < mapSizeY; y++)
+			{
+				var field = Instantiate(fakeFieldPrefab, fieldsContainer);
+				var rectTransform = field.GetComponent<RectTransform>();
+				rectTransform.anchoredPosition = new Vector2(xPosition + (i + mapSizeX) * spacingX - (mapSizeX - 1) * spacingX / 2f, yPosition + y * spacingY - (mapSizeY - 1) * spacingY / 2f);
+				field.GetComponent<Canvas>().sortingOrder = mapSizeY * 10 - y * 5;
+			}
+		}
+
+		fieldsBackground.anchoredPosition = new Vector2(0f, yPosition + (mapSizeY - 1) * spacingY - (mapSizeY - 1) * spacingY / 2f);
 	}
 
 	private List<int> GetOilForField()
