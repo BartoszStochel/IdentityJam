@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private int totalOilCapacityInOneField;
 	[SerializeField] private int maxOilInOneSlot;
 
+	[SerializeField] private int numberOfForestsOnMap;
+
 	private GameState currentState;
 
 	private Field[,] fields;
@@ -56,13 +58,55 @@ public class GameManager : MonoBehaviour
 
 	private void PlaceRandomForestsOnMap()
 	{
-		foreach (var field in fields)
+		var yIndicesToConsider = new List<int>();
+
+		for (int i = 0; i < mapSizeY; i++)
 		{
-			if (Random.Range(0, 2) == 0)
+			yIndicesToConsider.Add(i);
+		}
+
+		for (int i = 0; i < numberOfForestsOnMap; i++)
+		{
+			bool indexIsSettled;
+			int yIndexToConsider;
+			List<Field> freeFieldsInARow;
+
+			do
 			{
-				buildingState.PlaceBuildingOnField(allBuildingDatas.Find(data => data.name == "Forest"), field);
+				yIndexToConsider = yIndicesToConsider[Random.Range(0, yIndicesToConsider.Count)];
+				freeFieldsInARow = GetFreeFieldsInOneRow(yIndexToConsider);
+
+				if (freeFieldsInARow.Count <= 1)
+				{
+					yIndicesToConsider.Remove(yIndexToConsider);
+					indexIsSettled = false;
+				}
+				else
+				{
+					indexIsSettled = true;
+				}
+			}
+			while (!indexIsSettled);
+
+			var fieldToPlaceForest = freeFieldsInARow[Random.Range(0, freeFieldsInARow.Count)];
+			buildingState.PlaceBuildingOnField(allBuildingDatas.Find(data => data.name == "Forest"), fieldToPlaceForest);
+		}
+	}
+
+	private List<Field> GetFreeFieldsInOneRow(int rowYIndex)
+	{
+		var freeFields = new List<Field>();
+
+		for (int i = 0; i < mapSizeX; i++)
+		{
+			var fieldToConsider = fields[i, rowYIndex];
+			if (fieldToConsider.BuildingOnField == null)
+			{
+				freeFields.Add(fieldToConsider);
 			}
 		}
+
+		return freeFields;
 	}
 
 	private void InitializeResourcesManager()

@@ -666,6 +666,7 @@ MonoBehaviour:
   oilSlotsInOneField: 4
   totalOilCapacityInOneField: 20
   maxOilInOneSlot: 9
+  numberOfForestsOnMap: 15
 --- !u!4 &702958638
 Transform:
   m_ObjectHideFlags: 0
