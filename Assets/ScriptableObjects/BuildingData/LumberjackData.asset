@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Sprite>k__BackingField: {fileID: 3571097982523533681, guid: f6897da15b0f75f42bd7b6599fa97a24, type: 3}
   <NameToDisplay>k__BackingField: Lumberjack
-  <MoneyCost>k__BackingField: 150
+  <MoneyCost>k__BackingField: 40
   <CrudeCost>k__BackingField: 0
   <WoodCost>k__BackingField: 20
   <BuildingButton>k__BackingField: {fileID: -1139550868118536338, guid: 732b883ee28ad9d4e97fc14371e04907, type: 3}
