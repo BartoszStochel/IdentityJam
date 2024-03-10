@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private int mapSizeY;
 	[SerializeField] private int spacingX;
 	[SerializeField] private int spacingY;
+	[SerializeField] private int yPosition;
 
 	[SerializeField] private Transform buildingsToBuildContainer;
 	[SerializeField] private BuildingToBuildButton buildingToBuildPrefab;
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
 			resourcesManager.ModifyCrude(-resourcesManager.CurrentCrude);
 		}
 
-		yearTimerLabel.text = $"Year {currentYear}. Time to next year: {Mathf.CeilToInt(timerToNextYear)}";
+		yearTimerLabel.text = currentYear.ToString();
 	}
 
 	private void PlaceRandomForestsOnMap()
@@ -203,7 +204,7 @@ public class GameManager : MonoBehaviour
 			{
 				var field = Instantiate(fieldPrefab, fieldsContainer);
 				var rectTransform = field.GetComponent<RectTransform>();
-				rectTransform.anchoredPosition = new Vector2(x * spacingX - (mapSizeX - 1) * spacingX / 2f, y * spacingY - (mapSizeY - 1) * spacingY / 2f);
+				rectTransform.anchoredPosition = new Vector2(x * spacingX - (mapSizeX - 1) * spacingX / 2f, yPosition + y * spacingY - (mapSizeY - 1) * spacingY / 2f);
 				field.Initialize(x, y, GetOilForField());
 				field.ButtonClicked += OnFieldClicked;
 				field.HoverStart += OnFieldHoverStart;
