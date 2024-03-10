@@ -15,7 +15,11 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   <NameToDisplay>k__BackingField: Geologist
   <MoneyCost>k__BackingField: 200
-  <WoodCost>k__BackingField: 20
+  <CrudeCost>k__BackingField: 10
+  <WoodCost>k__BackingField: 0
+  <BuildingButton>k__BackingField: {fileID: -7992155288227495178, guid: 6652d7eab0fa25a4bb3adeb386a7fb4a, type: 3}
+  <HighlightedButton>k__BackingField: {fileID: 8516572660415502575, guid: c0a65f35d3c8d4b40807338059325ede, type: 3}
+  <UnavailableButton>k__BackingField: {fileID: -6308469319103760975, guid: 9f77c68648a344c4a808554a4de6b2df, type: 3}
   <ExtendedRangeInBothWays>k__BackingField: 2
   <ActionTimeInterval>k__BackingField: 1
   <TakenResources>k__BackingField: 0

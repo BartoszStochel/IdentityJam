@@ -657,6 +657,8 @@ MonoBehaviour:
   crudeLabel: {fileID: 1053998333}
   woodLabel: {fileID: 1949244983}
   startingMoney: 700
+  startingCrude: 100
+  startingWood: 200
   defaultState: {fileID: 11400000, guid: f541bf7f29a282647b9c11c57c67c18d, type: 2}
   buildingState: {fileID: 11400000, guid: 85fd8ffb95f3e48409665524f1e31505, type: 2}
   backgroundButton: {fileID: 1666325735}
@@ -1032,7 +1034,6 @@ GameObject:
   - component: {fileID: 1428905058}
   - component: {fileID: 1428905057}
   - component: {fileID: 1428905056}
-  - component: {fileID: 1428905055}
   m_Layer: 5
   m_Name: BuildingsPanel
   m_TagString: Untagged
@@ -1049,30 +1050,16 @@ RectTransform:
   m_GameObject: {fileID: 1428905053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1802020281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 0, y: 250}
+  m_SizeDelta: {x: 1169, y: 513}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1428905055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428905053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 1
-  m_VerticalFit: 0
 --- !u!114 &1428905056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,12 +1073,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 50
-    m_Right: 50
+    m_Left: 0
+    m_Right: 0
     m_Top: 0
-    m_Bottom: 85
+    m_Bottom: 79
   m_ChildAlignment: 4
-  m_Spacing: 50
+  m_Spacing: -65
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1112,14 +1099,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.74, g: 0.74, b: 0.74, a: 0.7411765}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -4947049724044670130, guid: 7c480ed46ff6fed4aa2de923459fe41b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

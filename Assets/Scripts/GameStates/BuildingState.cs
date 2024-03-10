@@ -53,6 +53,7 @@ public class BuildingState : GameState
 	{
 		resourcesManager.ModifyMoney(-currentlySelectedBuildingButton.buildingData.MoneyCost);
 		resourcesManager.ModifyWood(-currentlySelectedBuildingButton.buildingData.WoodCost);
+		resourcesManager.ModifyCrude(-currentlySelectedBuildingButton.buildingData.CrudeCost);
 
 		PlaceBuildingOnField(currentlySelectedBuildingButton.buildingData, field);
 
