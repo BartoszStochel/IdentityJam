@@ -5,10 +5,10 @@ public class LumberjackBehaviour : RangedBuildingBehaviour
 {
 	public LumberjackBehaviour(BuildingData newBuildingData, List<Field> newFieldsInRange, ResourcesManager newResourcesManager) : base(newBuildingData, newFieldsInRange)
 	{
-		buildingData = newBuildingData as LumberjackData;
+		BuildingData = newBuildingData as LumberjackData;
 		resourcesManager = newResourcesManager;
 
-		timer = buildingData.ActionTimeInterval;
+		timer = BuildingData.ActionTimeInterval;
 	}
 
 	private ResourcesManager resourcesManager;
@@ -31,10 +31,10 @@ public class LumberjackBehaviour : RangedBuildingBehaviour
 				continue;
 			}
 
-			var takenResources = forest.DepleteResources(buildingData.TakenResources);
+			var takenResources = forest.DepleteResources(BuildingData.TakenResources);
 
 			resourcesManager.ModifyWood(takenResources);
-			timer = buildingData.ActionTimeInterval;
+			timer = BuildingData.ActionTimeInterval;
 			return;
 		}
 	}

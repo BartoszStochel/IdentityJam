@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Field : MonoBehaviour
+public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 	[SerializeField] private GameObject canBuildIndicator;
+	[SerializeField] private GameObject inRangeIndicator;
 
 	public int XPosition { get; private set; }
 	public int YPosition { get; private set; }
@@ -13,6 +15,8 @@ public class Field : MonoBehaviour
 	private Button button;
 
 	public Action<Field> ButtonClicked;
+	public Action<Field> HoverStart;
+	public Action<Field> HoverEnd;
 
 	public void Initialize(int xPosition, int yPosition)
 	{
@@ -58,5 +62,20 @@ public class Field : MonoBehaviour
 	{
 		canBuildIndicator.SetActive(false);
 		button.enabled = false;
+	}
+
+	public void SetRangeIndicatorActivity(bool shouldItBeActive)
+	{
+		inRangeIndicator.SetActive(shouldItBeActive);
+	}
+
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		HoverStart?.Invoke(this);
+	}
+
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		HoverEnd?.Invoke(this);
 	}
 }

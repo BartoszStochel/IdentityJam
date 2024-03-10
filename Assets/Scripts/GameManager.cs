@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 	private List<BuildingToBuildButton> buildingButtons;
 
 	private ResourcesManager resourcesManager;
+	private FieldsRangeIndicatorsManager fieldsRangeIndicatorsManager;
 
 	private void Start()
 	{
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 		InitializeResourcesManager();
 		UpdateResourcesLabels();
 		UpdateBuildingButtonsAvailability();
+		fieldsRangeIndicatorsManager = new FieldsRangeIndicatorsManager(fields);
 		InitializeStates();
 		PlaceRandomForestsOnMap();
 
@@ -87,9 +89,12 @@ public class GameManager : MonoBehaviour
 	private void InitializeStates()
 	{
 		currentState = defaultState;
+
 		defaultState.RequestExitFromThisState += OnRequestExitFromThisState;
+		defaultState.Initialize(fieldsRangeIndicatorsManager);
+
 		buildingState.RequestExitFromThisState += OnRequestExitFromThisState;
-		buildingState.Initialize(fields, resourcesManager);
+		buildingState.Initialize(fields, resourcesManager, fieldsRangeIndicatorsManager);
 	}
 
 	private void OnRequestExitFromThisState(GameState state)
@@ -115,6 +120,8 @@ public class GameManager : MonoBehaviour
 				rectTransform.anchoredPosition = new Vector2(x * spacingX - (mapSizeX - 1) * spacingX / 2f, y * spacingY - (mapSizeY - 1) * spacingY / 2f);
 				field.Initialize(x, y);
 				field.ButtonClicked += OnFieldClicked;
+				field.HoverStart += OnFieldHoverStart;
+				field.HoverEnd += OnFieldHoverEnd;
 
 				fields[x, y] = field;
 			}
@@ -124,6 +131,16 @@ public class GameManager : MonoBehaviour
 	private void OnFieldClicked(Field field)
 	{
 		currentState.OnFieldClicked(field);
+	}
+
+	private void OnFieldHoverStart(Field field)
+	{
+		currentState.OnFieldHoverStart(field);
+	}
+
+	private void OnFieldHoverEnd(Field field)
+	{
+		currentState.OnFieldHoverEnd(field);
 	}
 
 	private void GenerateBuildingsToBuildButtons()

@@ -11,10 +11,11 @@ public class BuildingState : GameState
 	private Field[,] fields;
 	private ResourcesManager resourcesManager;
 
-	public void Initialize(Field[,] newFields, ResourcesManager newResourcesManager)
+	public void Initialize(Field[,] newFields, ResourcesManager newResourcesManager, FieldsRangeIndicatorsManager newFieldsRangeIndicatorsManager)
 	{
 		fields = newFields;
 		resourcesManager = newResourcesManager;
+		fieldsRangeIndicatorsManager = newFieldsRangeIndicatorsManager;
 	}
 
 	public void SetCurrentlySelectedBuildingButton(BuildingToBuildButton button)
@@ -45,6 +46,7 @@ public class BuildingState : GameState
 		}
 
 		currentlySelectedBuildingButton.SetCurrentlySelectedIndicatorActivity(false);
+		fieldsRangeIndicatorsManager.ClearRangeIndicators();
 	}
 
 	public override void OnFieldClicked(Field field)
@@ -62,5 +64,20 @@ public class BuildingState : GameState
 		var building = Instantiate(buildingPrefab, field.transform);
 		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields, resourcesManager));
 		field.SetBuilding(building);
+	}
+
+	public override void OnFieldHoverStart(Field hoveredField)
+	{
+		if (currentlySelectedBuildingButton.buildingData is not ActionBuildingData actionData)
+		{
+			return;
+		}
+
+		fieldsRangeIndicatorsManager.ActivateRangeIndicators(hoveredField, actionData.ExtendedRangeInBothWays);
+	}
+
+	public override void OnFieldHoverEnd(Field hoveredField)
+	{
+		fieldsRangeIndicatorsManager.ClearRangeIndicators();
 	}
 }

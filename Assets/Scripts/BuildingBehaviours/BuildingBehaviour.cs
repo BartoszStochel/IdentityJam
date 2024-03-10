@@ -4,7 +4,7 @@ public abstract class BuildingBehaviour
 {
 	public event Action BehaviourRequestsDeath;
 
-	protected BuildingData buildingData;
+	public BuildingData BuildingData { get; protected set; }
 
 	public virtual void OnUpdateBehaviour()
 	{
@@ -17,9 +17,9 @@ public abstract class BuildingBehaviour
 			UnityEngine.Debug.Log("dupa1");
 		}
 
-		buildingData = newBuildingData;
+		BuildingData = newBuildingData;
 
-		if (buildingData == null)
+		if (BuildingData == null)
 		{
 			UnityEngine.Debug.Log("dupa2");
 		}
