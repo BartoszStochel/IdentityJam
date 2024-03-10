@@ -177,10 +177,7 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (var buildingToBuildButton in buildingButtons)
 		{
-			var hasEnoughResourcesForBuilding =
-				resourcesManager.CurrentMoney >= buildingToBuildButton.buildingData.MoneyCost &&
-				resourcesManager.CurrentWood >= buildingToBuildButton.buildingData.WoodCost &&
-				resourcesManager.CurrentCrude >= buildingToBuildButton.buildingData.CrudeCost;
+			var hasEnoughResourcesForBuilding = resourcesManager.HaveEnoughResourcesForBuilding(buildingToBuildButton.buildingData);
 
 			buildingToBuildButton.SetNotEnoughResourcesIndicatorActivity(!hasEnoughResourcesForBuilding);
 		}

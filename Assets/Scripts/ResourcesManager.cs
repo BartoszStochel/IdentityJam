@@ -25,4 +25,11 @@ public class ResourcesManager
 		CurrentWood += woodToAdd;
 		ResourcesChanged?.Invoke();
 	}
+
+	public bool HaveEnoughResourcesForBuilding(BuildingData buildingData)
+	{
+		return CurrentMoney >= buildingData.MoneyCost &&
+				CurrentWood >= buildingData.WoodCost &&
+				CurrentCrude >= buildingData.CrudeCost;
+	}
 }

@@ -26,7 +26,7 @@ public class BuildingToBuildButton : MonoBehaviour
 
 		if (buildingData.WoodCost > 0)
 		{
-			firstCost.text = buildingData.MoneyCost.ToString();
+			firstCost.text = buildingData.WoodCost.ToString();
 		}
 		else
 		{
