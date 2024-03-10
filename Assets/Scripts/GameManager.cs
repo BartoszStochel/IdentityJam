@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Button backgroundButton;
 
 	[SerializeField] private int oilSlotsInOneField;
-	[SerializeField] private int totalOilCapacityInOneField;
+	[SerializeField] private int minOilInOneField;
+	[SerializeField] private int maxOilInOneField;
 	[SerializeField] private int maxOilInOneSlot;
 
 	[SerializeField] private int numberOfForestsOnMap;
@@ -187,7 +188,9 @@ public class GameManager : MonoBehaviour
 			oil.Add(0);
 		}
 
-		for (int i = 0; i < totalOilCapacityInOneField; i++)
+		var oilInOneField = Random.Range(minOilInOneField, maxOilInOneField);
+
+		for (int i = 0; i < oilInOneField; i++)
 		{
 			int indexToConsider;
 			bool indexIsSettled;

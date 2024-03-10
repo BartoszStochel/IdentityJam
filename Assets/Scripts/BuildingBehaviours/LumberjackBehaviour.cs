@@ -6,7 +6,6 @@ public class LumberjackBehaviour : ActionBuildingBehaviour
 	{
 		BuildingData = newBuildingData as LumberjackData;
 		resourcesManager = newResourcesManager;
-
 		timer = BuildingData.ActionTimeInterval;
 	}
 

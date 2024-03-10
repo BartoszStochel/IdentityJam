@@ -664,7 +664,8 @@ MonoBehaviour:
   buildingState: {fileID: 11400000, guid: 85fd8ffb95f3e48409665524f1e31505, type: 2}
   backgroundButton: {fileID: 1666325735}
   oilSlotsInOneField: 4
-  totalOilCapacityInOneField: 20
+  minOilInOneField: 5
+  maxOilInOneField: 25
   maxOilInOneSlot: 9
   numberOfForestsOnMap: 15
 --- !u!4 &702958638
