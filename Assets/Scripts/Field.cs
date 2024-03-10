@@ -48,6 +48,21 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		}
 	}
 
+	public int DepleteOilSlot(int oilSlotIndex, int howMuchToDeplete)
+	{
+		if (howMuchToDeplete > Oil[oilSlotIndex])
+		{
+			var howMuchWasReallyDepleted = Oil[oilSlotIndex];
+			Oil[oilSlotIndex] = 0;
+
+			return howMuchWasReallyDepleted;
+		}
+
+		Oil[oilSlotIndex] -= howMuchToDeplete;
+		OilSlots[oilSlotIndex].text = Oil[oilSlotIndex].ToString();
+		return howMuchToDeplete;
+	}
+
 	public void SetBuilding(Building newBuilding)
 	{
 		BuildingOnField = newBuilding;

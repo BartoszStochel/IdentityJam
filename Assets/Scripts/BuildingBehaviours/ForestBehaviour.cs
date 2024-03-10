@@ -13,8 +13,6 @@ public class ForestBehaviour : BuildingBehaviour
 
 	public int DepleteResources(int howMuchToDeplete)
 	{
-		// todo - podœwietlanie zasiêgu przy budowaniu i póŸniej po najechaniu na budynek
-
 		if (howMuchToDeplete > CurrentResources)
 		{
 			var howMuchWasReallyDepleted = CurrentResources;

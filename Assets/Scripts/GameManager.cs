@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Transform buildingsToBuildContainer;
 	[SerializeField] private BuildingToBuildButton buildingToBuildPrefab;
-	[SerializeField] private List<BuildingData> allBuildingDatas;
 	[SerializeField] private List<BuildingData> buildingDatasToBuildByPlayer;
+	[SerializeField] private BuildingData forestData;
 
 	[SerializeField] private TextMeshProUGUI cashLabel;
 	[SerializeField] private TextMeshProUGUI crudeLabel;
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 			while (!indexIsSettled);
 
 			var fieldToPlaceForest = freeFieldsInARow[Random.Range(0, freeFieldsInARow.Count)];
-			buildingState.PlaceBuildingOnField(allBuildingDatas.Find(data => data.name == "Forest"), fieldToPlaceForest);
+			buildingState.PlaceBuildingOnField(forestData, fieldToPlaceForest);
 		}
 	}
 
