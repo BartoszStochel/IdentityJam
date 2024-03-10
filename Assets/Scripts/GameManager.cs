@@ -23,10 +23,6 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI crudeLabel;
 	[SerializeField] private TextMeshProUGUI woodLabel;
 
-	[SerializeField] private int startingMoney;
-	[SerializeField] private int startingCrude;
-	[SerializeField] private int startingWood;
-
 	[SerializeField] private DefaultState defaultState;
 	[SerializeField] private BuildingState buildingState;
 
@@ -44,6 +40,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI yearTimerLabel;
 	[SerializeField] private int moneyValueOfOneCrude;
 	[SerializeField] private List<GameObject> calendarCheckmarks;
+	[SerializeField] private BuildingData geologistData;
+	[SerializeField] private BuildingData lumberjackData;
+	[SerializeField] private BuildingData oilRigData;
 
 	[SerializeField] private GameObject fakeFieldPrefab;
 	[SerializeField] private int numberOfFakeFieldsToGenerate;
@@ -90,8 +89,14 @@ public class GameManager : MonoBehaviour
 		{
 			currentYear++;
 			timerToNextYear = yearLengthInSeconds;
-			resourcesManager.ModifyMoney(resourcesManager.CurrentCrude * moneyValueOfOneCrude);
-			resourcesManager.ModifyCrude(-resourcesManager.CurrentCrude);
+
+			var crudeToSell = resourcesManager.CurrentCrude - geologistData.CrudeCost;
+
+			if (crudeToSell > 0)
+			{
+				resourcesManager.ModifyMoney(crudeToSell * moneyValueOfOneCrude);
+				resourcesManager.ModifyCrude(-crudeToSell);
+			}
 		}
 
 		float timeForOneCheckmark = (float)yearLengthInSeconds / calendarCheckmarks.Count;
@@ -162,9 +167,9 @@ public class GameManager : MonoBehaviour
 		resourcesManager = new ResourcesManager();
 		resourcesManager.ResourcesChanged += OnResourcesChanged;
 
-		resourcesManager.ModifyMoney(startingMoney);
-		resourcesManager.ModifyCrude(startingCrude);
-		resourcesManager.ModifyWood(startingWood);
+		resourcesManager.ModifyMoney(geologistData.MoneyCost * 2 + lumberjackData.MoneyCost * 2 + oilRigData.MoneyCost * 2);
+		resourcesManager.ModifyCrude(geologistData.CrudeCost * 2);
+		resourcesManager.ModifyWood(lumberjackData.WoodCost * 2);
 	}
 
 	private void OnResourcesChanged()

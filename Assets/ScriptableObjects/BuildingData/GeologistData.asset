@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Sprite>k__BackingField: {fileID: 3026877665143472482, guid: 06df1ea80d48a114ab04a6d59745cc71, type: 3}
   <NameToDisplay>k__BackingField: Geologist
-  <MoneyCost>k__BackingField: 200
+  <MoneyCost>k__BackingField: 170
   <CrudeCost>k__BackingField: 10
   <WoodCost>k__BackingField: 0
   <BuildingButton>k__BackingField: {fileID: -7992155288227495178, guid: 6652d7eab0fa25a4bb3adeb386a7fb4a, type: 3}

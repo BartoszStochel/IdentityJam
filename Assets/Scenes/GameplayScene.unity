@@ -1350,9 +1350,6 @@ MonoBehaviour:
   cashLabel: {fileID: 191360824}
   crudeLabel: {fileID: 1760450819}
   woodLabel: {fileID: 1521610169}
-  startingMoney: 700
-  startingCrude: 100
-  startingWood: 200
   defaultState: {fileID: 11400000, guid: f541bf7f29a282647b9c11c57c67c18d, type: 2}
   buildingState: {fileID: 11400000, guid: 85fd8ffb95f3e48409665524f1e31505, type: 2}
   backgroundButton: {fileID: 1666325735}
@@ -1362,7 +1359,7 @@ MonoBehaviour:
   maxOilInOneSlot: 9
   numberOfForestsOnMap: 15
   startingYear: 1868
-  yearLengthInSeconds: 60
+  yearLengthInSeconds: 30
   yearTimerLabel: {fileID: 1774367722}
   moneyValueOfOneCrude: 50
   calendarCheckmarks:
@@ -1378,6 +1375,9 @@ MonoBehaviour:
   - {fileID: 499357740}
   - {fileID: 278939319}
   - {fileID: 533069057}
+  geologistData: {fileID: 11400000, guid: c0d7b29c49806724087d31db18aa0619, type: 2}
+  lumberjackData: {fileID: 11400000, guid: bd3446cc284c34e4da443f4bcc3bb519, type: 2}
+  oilRigData: {fileID: 11400000, guid: ef616a52393fa904bae5c206d77de943, type: 2}
   fakeFieldPrefab: {fileID: 5042357973715434547, guid: 8d04eddfa312a4e4b9204446337babfb, type: 3}
   numberOfFakeFieldsToGenerate: 8
   fieldsBackground: {fileID: 1544673953}
