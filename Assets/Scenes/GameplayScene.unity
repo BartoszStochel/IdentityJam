@@ -1361,7 +1361,7 @@ MonoBehaviour:
   maxOilInOneField: 25
   maxOilInOneSlot: 9
   numberOfForestsOnMap: 15
-  startingYear: 1900
+  startingYear: 1868
   yearLengthInSeconds: 60
   yearTimerLabel: {fileID: 1774367722}
   moneyValueOfOneCrude: 50
