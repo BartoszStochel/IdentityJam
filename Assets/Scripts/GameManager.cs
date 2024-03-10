@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI woodLabel;
 
 	[SerializeField] private int startingMoney;
+	[SerializeField] private int startingCrude;
+	[SerializeField] private int startingWood;
 
 	[SerializeField] private DefaultState defaultState;
 	[SerializeField] private BuildingState buildingState;
@@ -144,8 +146,11 @@ public class GameManager : MonoBehaviour
 	private void InitializeResourcesManager()
 	{
 		resourcesManager = new ResourcesManager();
-		resourcesManager.ModifyMoney(startingMoney);
 		resourcesManager.ResourcesChanged += OnResourcesChanged;
+
+		resourcesManager.ModifyMoney(startingMoney);
+		resourcesManager.ModifyCrude(startingCrude);
+		resourcesManager.ModifyWood(startingWood);
 	}
 
 	private void OnResourcesChanged()
@@ -160,7 +165,8 @@ public class GameManager : MonoBehaviour
 		{
 			var hasEnoughResourcesForBuilding =
 				resourcesManager.CurrentMoney >= buildingToBuildButton.buildingData.MoneyCost &&
-				resourcesManager.CurrentWood >= buildingToBuildButton.buildingData.WoodCost;
+				resourcesManager.CurrentWood >= buildingToBuildButton.buildingData.WoodCost &&
+				resourcesManager.CurrentCrude >= buildingToBuildButton.buildingData.CrudeCost;
 
 			buildingToBuildButton.SetNotEnoughResourcesIndicatorActivity(!hasEnoughResourcesForBuilding);
 		}

@@ -140,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lumber_hover_0: -4653483721808613127
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

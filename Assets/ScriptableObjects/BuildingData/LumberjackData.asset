@@ -15,7 +15,11 @@ MonoBehaviour:
   <Sprite>k__BackingField: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   <NameToDisplay>k__BackingField: Lumberjack
   <MoneyCost>k__BackingField: 150
-  <WoodCost>k__BackingField: 0
+  <CrudeCost>k__BackingField: 0
+  <WoodCost>k__BackingField: 20
+  <BuildingButton>k__BackingField: {fileID: -1139550868118536338, guid: 732b883ee28ad9d4e97fc14371e04907, type: 3}
+  <HighlightedButton>k__BackingField: {fileID: -4653483721808613127, guid: 5b9c5a06e36159e408ac654bb3748e6e, type: 3}
+  <UnavailableButton>k__BackingField: {fileID: 1902380986345815994, guid: 3117f93147927414fb302472bb214742, type: 3}
   <ExtendedRangeInBothWays>k__BackingField: 2
   <ActionTimeInterval>k__BackingField: 3
   <TakenResources>k__BackingField: 10
