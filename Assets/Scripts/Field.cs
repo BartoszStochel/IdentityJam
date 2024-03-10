@@ -44,7 +44,7 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		for (int i = 0; i < DiscoveredOilSlots; i++)
 		{
 			OilSlots[i].text = Oil[i].ToString();
-			OilSlots[i].gameObject.SetActive(true);
+			OilSlots[i].transform.parent.gameObject.SetActive(true);
 		}
 	}
 
