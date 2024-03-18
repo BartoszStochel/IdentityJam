@@ -1342,10 +1342,6 @@ MonoBehaviour:
   yPosition: 50
   buildingsToBuildContainer: {fileID: 1428905054}
   buildingToBuildPrefab: {fileID: 8324947332420988509, guid: 0a78ffca965015544abfd8c0145dfa3c, type: 3}
-  buildingDatasToBuildByPlayer:
-  - {fileID: 11400000, guid: bd3446cc284c34e4da443f4bcc3bb519, type: 2}
-  - {fileID: 11400000, guid: c0d7b29c49806724087d31db18aa0619, type: 2}
-  - {fileID: 11400000, guid: ef616a52393fa904bae5c206d77de943, type: 2}
   forestData: {fileID: 11400000, guid: ea22682cc4953f445984329d3bf0723a, type: 2}
   cashLabel: {fileID: 191360824}
   crudeLabel: {fileID: 1760450819}
@@ -1381,6 +1377,7 @@ MonoBehaviour:
   fakeFieldPrefab: {fileID: 5042357973715434547, guid: 8d04eddfa312a4e4b9204446337babfb, type: 3}
   numberOfFakeFieldsToGenerate: 8
   fieldsBackground: {fileID: 1544673953}
+  gameSettings: {fileID: 11400000, guid: 316030d43892ca34b9eaacb11192100e, type: 2}
 --- !u!4 &702958638
 Transform:
   m_ObjectHideFlags: 0

@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Transform buildingsToBuildContainer;
 	[SerializeField] private BuildingToBuildButton buildingToBuildPrefab;
-	[SerializeField] private List<BuildingData> buildingDatasToBuildByPlayer;
 	[SerializeField] private BuildingData forestData;
 
 	[SerializeField] private TextMeshProUGUI cashLabel;
@@ -47,6 +46,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject fakeFieldPrefab;
 	[SerializeField] private int numberOfFakeFieldsToGenerate;
 	[SerializeField] private RectTransform fieldsBackground;
+
+	[SerializeField] private GameSettings gameSettings;
 
 	private int currentYear;
 	private float timerToNextYear;
@@ -311,7 +312,7 @@ public class GameManager : MonoBehaviour
 	{
 		buildingButtons = new List<BuildingToBuildButton>();
 
-		foreach (var data in buildingDatasToBuildByPlayer)
+		foreach (var data in gameSettings.BuildingDatasToBuildByPlayer)
 		{
 			var buildingButton = Instantiate(buildingToBuildPrefab, buildingsToBuildContainer);
 			buildingButton.Initialize(data);
