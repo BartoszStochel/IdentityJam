@@ -20,12 +20,11 @@ public class DefaultState : GameState
 
 	public override void OnFieldClicked(Field field)
 	{
-		
+
 	}
 
 	public override void OnFieldHoverStart(Field field)
 	{
-
 		if (field.BuildingOnField == null || field.BuildingOnField.Behaviour is not ActionBuildingBehaviour rangedBehaviour)
 		{
 			return;

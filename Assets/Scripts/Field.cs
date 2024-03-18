@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using TMPro;
 
 public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 	[SerializeField] private GameObject canBuildIndicator;
 	[SerializeField] private GameObject inRangeIndicator;
 	[SerializeField] private List<TextMeshProUGUI> OilSlots;
+	[SerializeField] private Button mainButton;
+	[SerializeField] private Button destroyButton;
 
 	public int XPosition { get; private set; }
 	public int YPosition { get; private set; }
 	public Building BuildingOnField { get; private set; }
 	public List<int> Oil { get; private set; }
 	public int DiscoveredOilSlots { get; private set; }
-
-	private Button button;
 
 	public Action<Field> ButtonClicked;
 	public Action<Field> HoverStart;
@@ -32,9 +32,11 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 		name = $"Field {XPosition}, {YPosition}";
 
-		button = GetComponentInChildren<Button>();
-		button.onClick.AddListener(OnButtonClicked);
-		button.enabled = false;
+		mainButton.onClick.AddListener(OnButtonClicked);
+		mainButton.enabled = false;
+
+		destroyButton.onClick.AddListener(() => Debug.Log("niszcz!"));
+		destroyButton.gameObject.SetActive(false);
 	}
 
 	public void SetDiscoveredOilSlots(int newDiscoveryLevel)
@@ -88,13 +90,13 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		var isFieldFree = BuildingOnField == null;
 
 		canBuildIndicator.SetActive(isFieldFree);
-		button.enabled = isFieldFree;
+		mainButton.enabled = isFieldFree;
 	}
 
 	public void DeactivateCanBuildIndicator()
 	{
 		canBuildIndicator.SetActive(false);
-		button.enabled = false;
+		mainButton.enabled = false;
 	}
 
 	public void SetRangeIndicatorActivity(bool shouldItBeActive)
