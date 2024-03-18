@@ -3,8 +3,6 @@ using System;
 
 public class Building : MonoBehaviour
 {
-	[SerializeField] private SpriteRenderer Sprite;
-
 	public BuildingBehaviour Behaviour { get; private set; }
 
 	public event Action BuildingDestroyed;
@@ -25,8 +23,12 @@ public class Building : MonoBehaviour
 		Behaviour = newBehaviour;
 		Behaviour.BehaviourRequestsDeath += OnBehaviourDeath;
 
-		Sprite.sprite = data.Sprite;
-		Sprite.sortingOrder = sortingOrder;
+		var sprites = GetComponentsInChildren<SpriteRenderer>();
+
+		for (int i = 0; i < sprites.Length; i++)
+		{
+			sprites[i].sortingOrder = sprites[i].sortingOrder + sortingOrder;
+		}
 	}
 
 	private void OnBehaviourDeath()

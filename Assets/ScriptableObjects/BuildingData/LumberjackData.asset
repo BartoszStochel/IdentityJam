@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5453d5e8ef1014ea91999d18f49d46, type: 3}
   m_Name: LumberjackData
   m_EditorClassIdentifier: 
-  <Sprite>k__BackingField: {fileID: 3571097982523533681, guid: f6897da15b0f75f42bd7b6599fa97a24, type: 3}
+  <Prefab>k__BackingField: {fileID: 8303963758609510599, guid: 917d3f8ed2ff4e3429caf06450094d02, type: 3}
   <NameToDisplay>k__BackingField: Lumberjack
   <MoneyCost>k__BackingField: 60
   <CrudeCost>k__BackingField: 0
