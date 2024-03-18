@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = nameof(BuildingState), menuName = "GameStates/" + nameof(BuildingState))]
@@ -7,12 +8,12 @@ public class BuildingState : GameState
 
 	private BuildingToBuildButton currentlySelectedBuildingButton;
 
-	private Field[,] fields;
+	private List<List<Field>> fieldsRows;
 	private ResourcesManager resourcesManager;
 
-	public void Initialize(Field[,] newFields, ResourcesManager newResourcesManager, FieldsRangeIndicatorsManager newFieldsRangeIndicatorsManager)
+	public void Initialize(List<List<Field>> newFields, ResourcesManager newResourcesManager, FieldsRangeIndicatorsManager newFieldsRangeIndicatorsManager)
 	{
-		fields = newFields;
+		fieldsRows = newFields;
 		resourcesManager = newResourcesManager;
 		fieldsRangeIndicatorsManager = newFieldsRangeIndicatorsManager;
 	}
@@ -29,9 +30,12 @@ public class BuildingState : GameState
 
 	public override void OnStateEntered()
 	{
-		foreach (var field in fields)
+		foreach (var row in fieldsRows)
 		{
-			field.TryActivateCanBuildIndicator();
+			foreach (var field in row)
+			{
+				field.TryActivateCanBuildIndicator();
+			}
 		}
 
 		currentlySelectedBuildingButton.SetCurrentlySelectedIndicatorActivity(true);
@@ -39,9 +43,12 @@ public class BuildingState : GameState
 
 	public override void OnStateExited()
 	{
-		foreach (var field in fields)
+		foreach (var row in fieldsRows)
 		{
-			field.DeactivateCanBuildIndicator();
+			foreach (var field in row)
+			{
+				field.DeactivateCanBuildIndicator();
+			}
 		}
 
 		currentlySelectedBuildingButton.SetCurrentlySelectedIndicatorActivity(false);
@@ -62,8 +69,8 @@ public class BuildingState : GameState
 	public void PlaceBuildingOnField(BuildingData buildingData, Field field)
 	{
 		var building = Instantiate(buildingData.Prefab, field.transform);
-		var sortingOrderForBuilding = field.GetComponent<Canvas>().sortingOrder - 1;
-		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields, resourcesManager), sortingOrderForBuilding);
+		var sortingOrderForBuilding = field.GetComponentInParent<Canvas>().sortingOrder - 1;
+		building.Initialize(buildingData.GetBuildingBehaviour(field, fieldsRows, resourcesManager), sortingOrderForBuilding);
 		field.SetBuilding(building);
 	}
 

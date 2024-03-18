@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = nameof(BuildingData), menuName = "BuildingData/Generic" + nameof(BuildingData))]
@@ -13,7 +14,7 @@ public class BuildingData : ScriptableObject
 	[field: SerializeField] public Sprite HighlightedButton { get; private set; }
 	[field: SerializeField] public Sprite UnavailableButton { get; private set; }
 
-	public virtual BuildingBehaviour GetBuildingBehaviour(Field originField, Field[,] fields, ResourcesManager newResourceManager)
+	public virtual BuildingBehaviour GetBuildingBehaviour(Field originField, List<List<Field>> fields, ResourcesManager newResourceManager)
 	{
 		return null;
 	}

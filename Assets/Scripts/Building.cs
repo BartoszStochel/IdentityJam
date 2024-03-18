@@ -7,8 +7,6 @@ public class Building : MonoBehaviour
 
 	public event Action BuildingDestroyed;
 
-	private BuildingData data;
-
 	private void Update()
 	{
 		if (Behaviour != null)
@@ -17,9 +15,8 @@ public class Building : MonoBehaviour
 		}
 	}
 
-	public void Initialize(BuildingData newData, BuildingBehaviour newBehaviour, int sortingOrder)
+	public void Initialize(BuildingBehaviour newBehaviour, int sortingOrder)
 	{
-		data = newData;
 		Behaviour = newBehaviour;
 		Behaviour.BehaviourRequestsDeath += OnBehaviourDeath;
 

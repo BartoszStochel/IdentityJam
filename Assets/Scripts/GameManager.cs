@@ -5,14 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-	[SerializeField] private Field fieldPrefab;
 	[SerializeField] private Transform fieldsContainer;
-	[SerializeField] private int mapSizeX;
-	[SerializeField] private int mapSizeY;
-	[SerializeField] private int spacingX;
-	[SerializeField] private int spacingY;
-	[SerializeField] private int xPosition;
-	[SerializeField] private int yPosition;
 
 	[SerializeField] private Transform buildingsToBuildContainer;
 	[SerializeField] private BuildingToBuildButton buildingToBuildPrefab;
@@ -43,10 +36,6 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private BuildingData lumberjackData;
 	[SerializeField] private BuildingData oilRigData;
 
-	[SerializeField] private GameObject fakeFieldPrefab;
-	[SerializeField] private int numberOfFakeFieldsToGenerate;
-	[SerializeField] private RectTransform fieldsBackground;
-
 	[SerializeField] private GameSettings gameSettings;
 
 	private int currentYear;
@@ -54,7 +43,8 @@ public class GameManager : MonoBehaviour
 
 	private GameState currentState;
 
-	private Field[,] fields;
+	// So, the first index is Y, second is X.
+	private List<List<Field>> fieldsRows;
 	private List<BuildingToBuildButton> buildingButtons;
 
 	private ResourcesManager resourcesManager;
@@ -67,7 +57,7 @@ public class GameManager : MonoBehaviour
 		InitializeResourcesManager();
 		UpdateResourcesLabels();
 		UpdateBuildingButtonsAvailability();
-		fieldsRangeIndicatorsManager = new FieldsRangeIndicatorsManager(fields);
+		fieldsRangeIndicatorsManager = new FieldsRangeIndicatorsManager(fieldsRows);
 		InitializeStates();
 		PlaceRandomForestsOnMap();
 
@@ -114,7 +104,7 @@ public class GameManager : MonoBehaviour
 	{
 		var yIndicesToConsider = new List<int>();
 
-		for (int i = 0; i < mapSizeY; i++)
+		for (int i = 0; i < gameSettings.NumberOfRowsInMap; i++)
 		{
 			yIndicesToConsider.Add(i);
 		}
@@ -151,9 +141,9 @@ public class GameManager : MonoBehaviour
 	{
 		var freeFields = new List<Field>();
 
-		for (int i = 0; i < mapSizeX; i++)
+		for (int i = 0; i < fieldsRows[rowYIndex].Count; i++)
 		{
-			var fieldToConsider = fields[i, rowYIndex];
+			var fieldToConsider = fieldsRows[rowYIndex][i];
 			if (fieldToConsider.BuildingOnField == null)
 			{
 				freeFields.Add(fieldToConsider);
@@ -197,7 +187,7 @@ public class GameManager : MonoBehaviour
 		defaultState.Initialize(fieldsRangeIndicatorsManager);
 
 		buildingState.RequestExitFromThisState += OnRequestExitFromThisState;
-		buildingState.Initialize(fields, resourcesManager, fieldsRangeIndicatorsManager);
+		buildingState.Initialize(fieldsRows, resourcesManager, fieldsRangeIndicatorsManager);
 	}
 
 	private void OnRequestExitFromThisState(GameState state)
@@ -212,45 +202,35 @@ public class GameManager : MonoBehaviour
 
 	private void GenerateFields()
 	{
-		fields = new Field[mapSizeX, mapSizeY];
+		fieldsRows = new List<List<Field>>(gameSettings.NumberOfRowsInMap);
+		var availableFieldsLayers = new List<FieldsLayer>(gameSettings.FieldsLayers);
 
-		for (int x = 0; x < mapSizeX; x++)
+		for (int y = 0; y < gameSettings.NumberOfRowsInMap; y++)
 		{
-			for (int y = 0; y < mapSizeY; y++)
+			var chosenPrefab = availableFieldsLayers[Random.Range(0, availableFieldsLayers.Count)];
+
+			if (availableFieldsLayers.Count > 1)
 			{
-				var field = Instantiate(fieldPrefab, fieldsContainer);
-				var rectTransform = field.GetComponent<RectTransform>();
-				rectTransform.anchoredPosition = new Vector2(xPosition + x * spacingX - (mapSizeX - 1) * spacingX / 2f, yPosition + y * spacingY - (mapSizeY - 1) * spacingY / 2f);
+				availableFieldsLayers.Remove(chosenPrefab);
+			}
+
+			var instantiatedLayer = Instantiate(chosenPrefab, fieldsContainer);
+			instantiatedLayer.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, gameSettings.BottomRowYPosition + gameSettings.SpacingBetweenRows * y);
+			var row = new List<Field>(instantiatedLayer.Fields);
+
+			fieldsRows.Add(row);
+			instantiatedLayer.GetComponent<Canvas>().sortingOrder = gameSettings.NumberOfRowsInMap * 10 - y * 5;
+
+			for (int x = 0; x < row.Count; x++)
+			{
+				var field = row[x];
+
 				field.Initialize(x, y, GetOilForField());
 				field.ButtonClicked += OnFieldClicked;
 				field.HoverStart += OnFieldHoverStart;
 				field.HoverEnd += OnFieldHoverEnd;
-				field.GetComponent<Canvas>().sortingOrder = mapSizeY * 10 - y * 5;
-
-				fields[x, y] = field;
 			}
 		}
-
-		for (int i = 0; i < numberOfFakeFieldsToGenerate; i++)
-		{
-			for (int y = 0; y < mapSizeY; y++)
-			{
-				var field = Instantiate(fakeFieldPrefab, fieldsContainer);
-				var rectTransform = field.GetComponent<RectTransform>();
-				rectTransform.anchoredPosition = new Vector2(xPosition + (- i - 1) * spacingX - (mapSizeX - 1) * spacingX / 2f, yPosition + y * spacingY - (mapSizeY - 1) * spacingY / 2f);
-				field.GetComponent<Canvas>().sortingOrder = mapSizeY * 10 - y * 5;
-			}
-
-			for (int y = 0; y < mapSizeY; y++)
-			{
-				var field = Instantiate(fakeFieldPrefab, fieldsContainer);
-				var rectTransform = field.GetComponent<RectTransform>();
-				rectTransform.anchoredPosition = new Vector2(xPosition + (i + mapSizeX) * spacingX - (mapSizeX - 1) * spacingX / 2f, yPosition + y * spacingY - (mapSizeY - 1) * spacingY / 2f);
-				field.GetComponent<Canvas>().sortingOrder = mapSizeY * 10 - y * 5;
-			}
-		}
-
-		fieldsBackground.anchoredPosition = new Vector2(0f, yPosition + (mapSizeY - 1) * spacingY - (mapSizeY - 1) * spacingY / 2f);
 	}
 
 	private List<int> GetOilForField()

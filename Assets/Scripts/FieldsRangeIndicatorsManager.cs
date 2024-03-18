@@ -1,13 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class FieldsRangeIndicatorsManager
 {
-	private Field[,] fields;
+	private List<List<Field>> fields;
 	private List<Field> currentlyHighlightedFieldsInRange = new List<Field>();
 
-	public FieldsRangeIndicatorsManager(Field[,] newFields)
+	public FieldsRangeIndicatorsManager(List<List<Field>> newFields)
 	{
 		fields = newFields;
 	}

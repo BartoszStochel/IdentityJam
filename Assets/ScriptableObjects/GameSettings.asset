@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda4f9f7ef633ec439e7a3938be12d56, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
+  <FieldsLayers>k__BackingField:
+  - {fileID: 5987330392165960249, guid: ea6def97ffbb9e44899714a9eae01ff3, type: 3}
   <BuildingDatasToBuildByPlayer>k__BackingField:
   - {fileID: 11400000, guid: bd3446cc284c34e4da443f4bcc3bb519, type: 2}
   - {fileID: 11400000, guid: c0d7b29c49806724087d31db18aa0619, type: 2}
   - {fileID: 11400000, guid: ef616a52393fa904bae5c206d77de943, type: 2}
+  <NumberOfRowsInMap>k__BackingField: 3
+  <SpacingBetweenRows>k__BackingField: 220
+  <BottomRowYPosition>k__BackingField: -380
