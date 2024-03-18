@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = nameof(BuildingState), menuName = "GameStates/" + nameof(BuildingState))]
 public class BuildingState : GameState
@@ -62,7 +61,7 @@ public class BuildingState : GameState
 
 	public void PlaceBuildingOnField(BuildingData buildingData, Field field)
 	{
-		var building = Instantiate(buildingPrefab, field.transform);
+		var building = Instantiate(buildingData.Prefab, field.transform);
 		var sortingOrderForBuilding = field.GetComponent<Canvas>().sortingOrder - 1;
 		building.Initialize(buildingData, buildingData.GetBuildingBehaviour(field, fields, resourcesManager), sortingOrderForBuilding);
 		field.SetBuilding(building);

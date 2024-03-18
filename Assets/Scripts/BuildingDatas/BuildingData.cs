@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = nameof(BuildingData), menuName = "BuildingData/Generic" + nameof(BuildingData))]
 public class BuildingData : ScriptableObject
 {
-	[field: SerializeField] public Sprite Sprite { get; private set; }
+	[field: SerializeField] public Building Prefab { get; private set; }
 	[field: SerializeField] public string NameToDisplay { get; private set; }
 	[field: SerializeField] public int MoneyCost { get; private set; }
 	[field: SerializeField] public int CrudeCost { get; private set; }
