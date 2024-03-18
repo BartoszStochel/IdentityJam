@@ -1361,7 +1361,7 @@ MonoBehaviour:
   startingYear: 1868
   yearLengthInSeconds: 24
   yearTimerLabel: {fileID: 1774367722}
-  moneyValueOfOneCrude: 80
+  moneyValueOfOneCrude: 40
   calendarCheckmarks:
   - {fileID: 1611979536}
   - {fileID: 1346560269}
