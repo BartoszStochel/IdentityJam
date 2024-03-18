@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldPrefab: {fileID: -8199644044953460828, guid: 131a5d744ce832d4995d57a6d98a556a, type: 3}
   fieldsContainer: {fileID: 1997799223}
-  mapSizeX: 10
+  mapSizeX: 18
   mapSizeY: 3
   spacingX: 100
   spacingY: 250
@@ -1355,13 +1355,13 @@ MonoBehaviour:
   backgroundButton: {fileID: 1666325735}
   oilSlotsInOneField: 4
   minOilInOneField: 5
-  maxOilInOneField: 25
+  maxOilInOneField: 36
   maxOilInOneSlot: 9
-  numberOfForestsOnMap: 15
+  numberOfForestsOnMap: 35
   startingYear: 1868
-  yearLengthInSeconds: 30
+  yearLengthInSeconds: 24
   yearTimerLabel: {fileID: 1774367722}
-  moneyValueOfOneCrude: 50
+  moneyValueOfOneCrude: 80
   calendarCheckmarks:
   - {fileID: 1611979536}
   - {fileID: 1346560269}

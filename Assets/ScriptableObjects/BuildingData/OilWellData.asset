@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Sprite>k__BackingField: {fileID: 6304826840174917774, guid: d48497af3b7071f4c9b9f91a1c836a59, type: 3}
   <NameToDisplay>k__BackingField: Oil well
-  <MoneyCost>k__BackingField: 110
+  <MoneyCost>k__BackingField: 60
   <CrudeCost>k__BackingField: 0
-  <WoodCost>k__BackingField: 80
+  <WoodCost>k__BackingField: 160
   <BuildingButton>k__BackingField: {fileID: 3365517634901027850, guid: 206ac9605e2612544918b6f716126fbf, type: 3}
   <HighlightedButton>k__BackingField: {fileID: 2399515643337104930, guid: c2fd8b3dc195c5d4fb4af20633c89c68, type: 3}
   <UnavailableButton>k__BackingField: {fileID: -312931144617172343, guid: 53450c77caa67e644a2b1263ca02c3c9, type: 3}
