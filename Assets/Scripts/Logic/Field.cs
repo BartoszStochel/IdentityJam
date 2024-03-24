@@ -12,6 +12,7 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	[SerializeField] private List<TextMeshProUGUI> OilSlots;
 	[SerializeField] private Button mainButton;
 	[SerializeField] private Button destroyButton;
+	[SerializeField] private Button upgradeButton;
 
 	public int XPosition { get; private set; }
 	public int YPosition { get; private set; }
@@ -38,6 +39,8 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 		destroyButton.onClick.AddListener(OnBuildingDeath);
 		destroyButton.gameObject.SetActive(false);
+		upgradeButton.onClick.AddListener(() => Debug.Log("ulepsz"));
+		upgradeButton.gameObject.SetActive(false);
 	}
 
 	public void SetDiscoveredOilSlots(int newDiscoveryLevel)
@@ -118,6 +121,6 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	public void SetOperationButtonsActivity(bool shouldBeActive)
 	{
 		destroyButton.gameObject.SetActive(shouldBeActive);
-		// tutaj jeszcze ten od upgrejdu
+		upgradeButton.gameObject.SetActive(shouldBeActive);
 	}
 }
