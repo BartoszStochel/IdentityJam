@@ -1,0 +1,17 @@
+{
+    "name": "OilCity.GameStates",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9f9659935a2ff404fb0bc10df662f7b0",
+        "GUID:679ec44ef24465945b409f65d520d1ca"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
