@@ -46,19 +46,17 @@ public class BuildingToBuildButton : MonoBehaviour
 		var spriteState = new SpriteState();
 		spriteState.highlightedSprite = buildingData.HighlightedButton;
 		spriteState.pressedSprite = buildingData.HighlightedButton;
-		spriteState.selectedSprite = buildingData.HighlightedButton;
 		spriteState.disabledSprite = buildingData.UnavailableButton;
 		button.spriteState = spriteState;
 	}
 
 	public void SetCurrentlySelectedIndicatorActivity(bool shouldBeActive)
 	{
-		//currentlySelectedIndicator.SetActive(shouldBeActive);
+		sprite.sprite = shouldBeActive ? buildingData.HighlightedButton : buildingData.BuildingButton;
 	}
 
 	public void SetNotEnoughResourcesIndicatorActivity(bool shouldBeActive)
 	{
-		//notEnoughResourcesIndicator.SetActive(shouldBeActive);
 		button.interactable = !shouldBeActive;
 	}
 
