@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5453d5e8ef1014ea91999d18f49d46, type: 3}
+  m_Name: BetterLumberjackData
+  m_EditorClassIdentifier: 
+  <Prefab>k__BackingField: {fileID: 8303963758609510599, guid: 917d3f8ed2ff4e3429caf06450094d02, type: 3}
+  <NameToDisplay>k__BackingField: Lumberjack
+  <MoneyCost>k__BackingField: 10
+  <CrudeCost>k__BackingField: 0
+  <WoodCost>k__BackingField: 10
+  <BuildingButton>k__BackingField: {fileID: 0}
+  <HighlightedButton>k__BackingField: {fileID: 0}
+  <UnavailableButton>k__BackingField: {fileID: 0}
+  <ExtendedRangeInBothWays>k__BackingField: 2
+  <ActionTimeInterval>k__BackingField: 0.5
+  <TakenResources>k__BackingField: 20

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe5453d5e8ef1014ea91999d18f49d46, type: 3}
-  m_Name: LumberjackData
+  m_Name: BasicLumberjackData
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 8303963758609510599, guid: 917d3f8ed2ff4e3429caf06450094d02, type: 3}
   <NameToDisplay>k__BackingField: Lumberjack
