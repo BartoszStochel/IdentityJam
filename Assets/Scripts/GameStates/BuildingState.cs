@@ -62,6 +62,7 @@ public class BuildingState : GameState
 		resourcesManager.ModifyCrude(-currentlySelectedBuildingButton.buildingData.CrudeCost);
 
 		PlaceBuildingOnField(currentlySelectedBuildingButton.buildingData, field);
+		field.SetOperationButtonsActivity(true);
 
 		RequestExitFromThisState?.Invoke(this);
 	}
