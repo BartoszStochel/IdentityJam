@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Button backgroundButton;
 
+	// TODO - move more balance fields to GameSettings
 	[SerializeField] private int oilSlotsInOneField;
 	[SerializeField] private int minOilInOneField;
 	[SerializeField] private int maxOilInOneField;
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
 
 	private ResourcesManager resourcesManager;
 	private FieldsRangeIndicatorsManager fieldsRangeIndicatorsManager;
+
+	private Field currentlyHoveredField;
 
 	private void Start()
 	{
@@ -280,11 +283,13 @@ public class GameManager : MonoBehaviour
 
 	private void OnFieldHoverStart(Field field)
 	{
+		currentlyHoveredField = field;
 		currentState.OnFieldHoverStart(field);
 	}
 
 	private void OnFieldHoverEnd(Field field)
 	{
+		currentlyHoveredField = null;
 		currentState.OnFieldHoverEnd(field);
 	}
 
@@ -313,7 +318,7 @@ public class GameManager : MonoBehaviour
 	{
 		currentState.OnStateExited();
 		currentState = newState;
-		currentState.OnStateEntered();
+		currentState.OnStateEntered(currentlyHoveredField);
 	}
 
 	private void UpdateResourcesLabels()

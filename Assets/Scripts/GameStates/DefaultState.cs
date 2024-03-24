@@ -8,9 +8,12 @@ public class DefaultState : GameState
 		fieldsRangeIndicatorsManager = newFieldsRangeIndicatorsManager;
 	}
 
-	public override void OnStateEntered()
+	public override void OnStateEntered(Field currentlyHoveredField)
 	{
-
+		if (currentlyHoveredField is not null)
+		{
+			OnFieldHoverStart(currentlyHoveredField);
+		}
 	}
 
 	public override void OnStateExited()
