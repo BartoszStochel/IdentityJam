@@ -22,6 +22,7 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	public Action<Field> ButtonClicked;
 	public Action<Field> HoverStart;
 	public Action<Field> HoverEnd;
+	public Action<Field> BuildingOnThisFieldDestroyed;
 
 	public void Initialize(int xPosition, int yPosition, List<int> oil)
 	{
@@ -35,7 +36,7 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		mainButton.onClick.AddListener(OnButtonClicked);
 		mainButton.enabled = false;
 
-		destroyButton.onClick.AddListener(() => Debug.Log("niszcz!"));
+		destroyButton.onClick.AddListener(OnBuildingDeath);
 		destroyButton.gameObject.SetActive(false);
 	}
 
@@ -73,11 +74,11 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 	private void OnBuildingDeath()
 	{
+		SetOperationButtonsActivity(false);
 		BuildingOnField.BuildingDestroyed -= OnBuildingDeath;
-
 		Destroy(BuildingOnField.gameObject);
-
 		BuildingOnField = null;
+		BuildingOnThisFieldDestroyed?.Invoke(this);
 	}
 
 	private void OnButtonClicked()
@@ -112,5 +113,11 @@ public class Field : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	public void OnPointerExit(PointerEventData eventData)
 	{
 		HoverEnd?.Invoke(this);
+	}
+
+	public void SetOperationButtonsActivity(bool shouldBeActive)
+	{
+		destroyButton.gameObject.SetActive(shouldBeActive);
+		// tutaj jeszcze ten od upgrejdu
 	}
 }

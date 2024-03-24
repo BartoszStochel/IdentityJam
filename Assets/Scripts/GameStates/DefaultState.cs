@@ -31,10 +31,12 @@ public class DefaultState : GameState
 		}
 
 		fieldsRangeIndicatorsManager.ActivateRangeIndicators(field, rangedBehaviour.BuildingData.ExtendedRangeInBothWays);
+		field.SetOperationButtonsActivity(true);
 	}
 
 	public override void OnFieldHoverEnd(Field field)
 	{
 		fieldsRangeIndicatorsManager.ClearRangeIndicators();
+		field.SetOperationButtonsActivity(false);
 	}
 }
